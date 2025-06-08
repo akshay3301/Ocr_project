@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "c62b3249-9dd0-4913-8bf5-967d179b9e41",
+		"name": "OCR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26726866"
+	},
+	"item": [
+		{
+			"name": "Upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/akshay/Downloads/luckylouie_20240529_001.pdf"
+						}
+					]
+				},
+				"url": "http://localhost:8000/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"receipt_id\": 1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/validate?receipt_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"validate"
+					],
+					"query": [
+						{
+							"key": "receipt_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Process",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/akshay/Downloads/luckylouie_20240529_001.pdf"
+						}
+					]
+				},
+				"url": "http://localhost:8000/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "Receipts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8000/receipts"
+			},
+			"response": []
+		},
+		{
+			"name": "Receipt",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
