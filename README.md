@@ -87,7 +87,8 @@ convert_from_path(file_path, poppler_path=r"C:\poppler\Library\bin")
 ```
 
 ---
-![image](https://github.com/user-attachments/assets/17201825-fb02-4041-88f2-9fb3df0a2d10)
+![image](https://github.com/user-attachments/assets/494d9045-b999-49be-a195-b76f6deb5c45)
+
 - Replace ocr_api_key with your api key from OCR SPACE
 
 
