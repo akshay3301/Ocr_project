@@ -92,14 +92,14 @@ convert_from_path(file_path, poppler_path=r"C:\poppler\Library\bin")
 - Replace ocr_api_key with your api key from OCR SPACE
 
 
-## 🚀 Running the App
+##  Running the App
 
 ```bash
 uvicorn main:app --reload
 ```
 ---
 
-## 📤 API Endpoints
+##  API Endpoints
 
 ### 1. **Upload a Receipt**
 ```http
