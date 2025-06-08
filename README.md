@@ -204,4 +204,4 @@ GET /receipts/{receipt_id}
 - **PyPDF2** for PDF validation
 
 ---
-
+You can import postman collection from **OCR.postman_collection.json** file
