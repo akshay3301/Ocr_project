@@ -1,10 +1,10 @@
-# 🧾 Receipt OCR App
+#  Receipt OCR App
 
 A FastAPI-based web application to automate the extraction of data from scanned PDF receipts using OCR (Tesseract for offline), OCR (OCR SPACE API for online)  and store structured metadata in an SQLite database.
 
 ---
 
-## 📌 Features
+## Features
 
 - Upload scanned receipts in PDF format
 - Validate if uploaded files are genuine PDFs
@@ -14,7 +14,7 @@ A FastAPI-based web application to automate the extraction of data from scanned 
 
 ---
 
-## 🗄️ Database Schema
+##  Database Schema
 
 ### 1. `receipt_file` table
 
@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ### 4. Install Tesseract OCR and Poppler
 
-#### 📥 Tesseract (Windows):
+####  Tesseract (Windows):
 
 - Download from: https://github.com/UB-Mannheim/tesseract/wiki
 - Add `C:\Program Files\Tesseract-OCR` to your system PATH
@@ -77,7 +77,7 @@ pip install -r requirements.txt
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 ```
 
-#### 📥 Poppler (Windows):
+####  Poppler (Windows):
 
 - Download: https://github.com/oschwartz10612/poppler-windows/releases/
 - Extract and add `C:\poppler\Library\bin` to your system PATH
