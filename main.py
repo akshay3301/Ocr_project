@@ -16,19 +16,29 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 
 init_db()
 
+from services.file_service import get_file_hash
+
 @app.post("/upload")
 def upload(file: UploadFile = File(...)):
     if not file.filename.endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are allowed")
 
+    file_hash = get_file_hash(file.file)
+    
+    db = SessionLocal()
+    existing = db.query(ReceiptFile).filter_by(file_hash=file_hash).first()
+    if existing:
+        db.close()
+        raise HTTPException(status_code=400, detail="File already exists")
+
     file_path = UPLOAD_DIR / file.filename
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    db = SessionLocal()
     receipt_file = ReceiptFile(
         file_name=file.filename,
         file_path=str(file_path),
+        file_hash=file_hash
     )
     db.add(receipt_file)
     db.commit()
@@ -36,6 +46,7 @@ def upload(file: UploadFile = File(...)):
     db.close()
 
     return {"message": "File uploaded successfully", "id": receipt_file.id}
+
 
 @app.post("/validate")
 def validate(receipt_id: int):
@@ -60,11 +71,11 @@ def process(receipt_id: int):
         db.close()
         raise HTTPException(status_code=404, detail="Receipt not found or not valid")
 
-    # # Check if file already processed (exists in Receipt table)
-    # existing_receipt = db.query(Receipt).filter_by(file_path=receipt_file.file_path).first()
-    # if existing_receipt:
-    #     db.close()
-    #     raise HTTPException(status_code=400, detail="File already exists")
+    # Check if file already processed (exists in Receipt table)
+    existing_receipt = db.query(Receipt).filter_by(file_path=receipt_file.file_path).first()
+    if existing_receipt:
+        db.close()
+        raise HTTPException(status_code=400, detail="File already exists")
 
     data = process_receipt(receipt_file.file_path)
     receipt = Receipt(

@@ -9,6 +9,7 @@ class ReceiptFile(Base):
     file_name = Column(String, nullable=False)
     file_path = Column(String, nullable=False)
     is_valid = Column(Boolean, default=False)
+    file_hash = Column(String, unique=True) 
     invalid_reason = Column(String, nullable=True)
     is_processed = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
