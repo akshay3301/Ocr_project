@@ -114,13 +114,13 @@ POST /upload
 ```json
 {
   "message": "File uploaded successfully",
-  "id": 1
+  "id": 2
 }
 ```
 
 ### 2. **Validate a Receipt File**
 ```http
-POST /validate?receipt_id=1
+POST /validate?receipt_id=2
 ```
 ![image](https://github.com/user-attachments/assets/6c17bee8-4e74-457b-b28e-cc3ea6010ce1)
 
@@ -134,7 +134,7 @@ POST /validate?receipt_id=1
 
 ### 3. **Process a Valid Receipt**
 ```http
-POST /process?receipt_id=1
+POST /process?receipt_id=2
 ```
 
 **Response:**
@@ -160,6 +160,15 @@ GET /receipts
     "total_amount": 244.50,
     "file_path": "receipts/receipt1.pdf"
   }
+{
+    "id": 2,
+    "total_amount": 29.28,
+    "created_at": "2025-06-08T07:37:05.250035",
+    "file_path": "receipts\\luckylouie_20240529_001.pdf",
+    "purchased_at": "2024-05-25T11:31:00",
+    "merchant_name": "Luckylouie",
+    "updated_at": "2025-06-08T07:37:05.250035"
+}
 ]
 ```
 ![image](https://github.com/user-attachments/assets/835511f5-aead-44d1-b205-7f57b860d28f)
@@ -172,10 +181,13 @@ GET /receipts/{receipt_id}
 **Response:**
 ```json
 {
-  "id": 1,
-  "purchased_at": "2024-05-12T00:00:00",
-  "merchant_name": "SuperMart",
-  "total_amount": 244.50
+    "id": 1,
+    "total_amount": 29.28,
+    "created_at": "2025-06-08T07:37:05.250035",
+    "file_path": "receipts\\luckylouie_20240529_001.pdf",
+    "purchased_at": "2024-05-25T11:31:00",
+    "merchant_name": "Luckylouie",
+    "updated_at": "2025-06-08T07:37:05.250035"
 }
 ```
 ![image](https://github.com/user-attachments/assets/4ba45dce-217a-4d2a-a308-9ed3b2bba9c1)
@@ -183,7 +195,7 @@ GET /receipts/{receipt_id}
 
 ---
 
-## 🧠 Tech Stack
+##  Tech Stack
 
 - **Python** & **FastAPI**
 - **SQLite** via SQLAlchemy ORM
