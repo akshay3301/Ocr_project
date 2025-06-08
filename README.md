@@ -1,6 +1,6 @@
 # 🧾 Receipt OCR App
 
-A FastAPI-based web application to automate the extraction of data from scanned PDF receipts using OCR (Tesseract) and store structured metadata in an SQLite database.
+A FastAPI-based web application to automate the extraction of data from scanned PDF receipts using OCR (Tesseract for offline), OCR (OCR SPACE API for online)  and store structured metadata in an SQLite database.
 
 ---
 
@@ -24,6 +24,7 @@ A FastAPI-based web application to automate the extraction of data from scanned 
 | `file_name`   | String    | Name of the uploaded file                        |
 | `file_path`   | String    | File system path where the file is stored        |
 | `is_valid`    | Boolean   | Whether the file is a valid PDF                  |
+| `file_hash`    | String  | To check if file already exists                |
 | `invalid_reason` | String | Reason for invalidity if not a PDF              |
 | `is_processed`| Boolean   | If OCR processing has been completed             |
 | `created_at`  | DateTime  | Upload timestamp                                 |
@@ -86,16 +87,15 @@ convert_from_path(file_path, poppler_path=r"C:\poppler\Library\bin")
 ```
 
 ---
+![image](https://github.com/user-attachments/assets/17201825-fb02-4041-88f2-9fb3df0a2d10)
+- Replace ocr_api_key with your api key from OCR SPACE
+
 
 ## 🚀 Running the App
 
 ```bash
 uvicorn main:app --reload
 ```
-
-Visit the interactive API docs at:  
-📄 http://127.0.0.1:8000/docs
-
 ---
 
 ## 📤 API Endpoints
@@ -104,6 +104,8 @@ Visit the interactive API docs at:
 ```http
 POST /upload
 ```
+![image](https://github.com/user-attachments/assets/ea334e9d-97e0-4d76-ae63-87ddf6fb90b2)
+
 **Body (form-data):**
 - `file`: PDF file
 
@@ -119,6 +121,7 @@ POST /upload
 ```http
 POST /validate?receipt_id=1
 ```
+![image](https://github.com/user-attachments/assets/6c17bee8-4e74-457b-b28e-cc3ea6010ce1)
 
 **Response:**
 ```json
@@ -139,6 +142,7 @@ POST /process?receipt_id=1
   "message": "Receipt processed successfully"
 }
 ```
+![image](https://github.com/user-attachments/assets/0d66fdaf-0230-44c1-b304-57244df435e9)
 
 ### 4. **Get All Processed Receipts**
 ```http
@@ -157,6 +161,7 @@ GET /receipts
   }
 ]
 ```
+![image](https://github.com/user-attachments/assets/835511f5-aead-44d1-b205-7f57b860d28f)
 
 ### 5. **Get Receipt by ID**
 ```http
@@ -172,6 +177,8 @@ GET /receipts/{receipt_id}
   "total_amount": 244.50
 }
 ```
+![image](https://github.com/user-attachments/assets/4ba45dce-217a-4d2a-a308-9ed3b2bba9c1)
+
 
 ---
 
@@ -179,12 +186,9 @@ GET /receipts/{receipt_id}
 
 - **Python** & **FastAPI**
 - **SQLite** via SQLAlchemy ORM
-- **Tesseract OCR** for text extraction
+- **Tesseract OCR** and **OCR SPACE API** for text extraction
 - **pdf2image + Poppler** for converting PDF to image
 - **PyPDF2** for PDF validation
 
 ---
 
-## 📎 License
-
-MIT License – free to use, modify, and distribute.
